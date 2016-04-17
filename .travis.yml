@@ -1,0 +1,22 @@
+language: android
+android:
+  components:
+  - extra-android-m2repository
+  - platform-tools
+  - tools
+  - build-tools-23.0.1
+  - android-23
+script: "./gradlew assembleRelease"
+deploy:
+  provider: releases
+  api_key:
+    secure: P6XwJnmKanYHtKh34+stZP0go5ibclWSwO8cLn2rhLerqVryLbC6DUdZYD1rcaYSyGuB0C1KFY/uDjEDQf9m9Nd1Q1PMbUzdP4MLk4n/QKm/mwIc721kSRxhLIsWjBXwv1BHFVc7Ve/zgx6P7FCoEZAMio8luIiXwGTiCecGCnJmdwW5uLkRCXyZrdxXdfyqgc2tHSQshVxu3ttyfYeAixCyxFfKJKXAg8QcjCLk3uoFbIJP5Mt47oA3HTipQGiuPFDY63q61ppsL+LwSCXTSdtJXJewxLln6QorBOcnAyXYG9pPaQjGWUGBzHHkRazbBc9Lx5x3sifq1Ek+eCA/Xbhn+PbtWj0R4JnBzJhOepLNa+TBEth87AvLLYMAWpLGBskfnx0umeBScXUimk0GGHdFc7LQJqNQ9jSowfiz200TH8ovOlLqkFXrlkTN51atItY+20JzgZ6HJOM9ucO1jRS6b9raJwL5pxc2RVPbsRdXLothrZ8mMvsibQUOoCts0Vid8I7aYV9d7waFZS8TMbU3jVhywh+GkEbEFDsTsijD3aiRj8QzKR47HKoQrnsR2GeO9x41hb9OoAUDNoLyAJgUAEZwyT0fdt+uOQuIOAIHet8jx6/GYSZYsksx84Bm9ZEfM+s6QJdcrr5SU0jxklLA96+EMlGLueNKwSSmgxU=
+  file: app/build/outputs/apk/app-release.apk
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: out386/ThugOTA
+before_install:
+- openssl aes-256-cbc -K $encrypted_1ded71610847_key -iv $encrypted_1ded71610847_iv
+  -in keys.tar.enc -out keys.tar -d
+- tar xvf keys.tar
