@@ -1,17 +1,14 @@
-package delta.out386.borkeddelta;
+package delta.out386.thugota;
 
-import android.os.AsyncTask;
 import android.content.Context;
 import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.zip.ZipFile;
 
-import eu.chainfire.libsuperuser.Shell;
-public class SortFileType 
+public class SortFileType
 {
 	File file;
 	public SortFileType(Context context) {

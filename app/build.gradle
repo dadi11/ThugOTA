@@ -12,7 +12,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
-        applicationId "delta.out386.borkeddelta"
+        applicationId "delta.out386.thugota"
         minSdkVersion 23
         targetSdkVersion 23
         versionCode 21

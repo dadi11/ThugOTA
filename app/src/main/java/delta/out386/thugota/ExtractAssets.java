@@ -1,11 +1,10 @@
-package delta.out386.borkeddelta;
+package delta.out386.thugota;
 
 import android.os.AsyncTask;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import android.util.Log;
 import android.content.Context;
