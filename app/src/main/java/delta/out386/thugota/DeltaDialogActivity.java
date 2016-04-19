@@ -60,6 +60,24 @@ public class DeltaDialogActivity extends Activity {
             loadingText.setText(text);
         }
     };
+    
+    BroadcastReceiver notRrReciever = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            AVLoadingIndicatorView loader = (AVLoadingIndicatorView)findViewById(R.id.aviLoader);
+            RelativeLayout okButton = (RelativeLayout)findViewById(R.id.ok_button);
+            String text = "Sorry. This app only works on ResurrectionRemix";
+            loader.setVisibility(View.GONE);
+            okButton.setVisibility(View.VISIBLE);
+            okButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDestroy();
+                }
+            });
+            loadingText.setText(text);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +105,10 @@ public class DeltaDialogActivity extends Activity {
         IntentFilter genericMessage = new IntentFilter();
         genericMessage.addAction(Constants.GENERIC_DIALOG);
         registerReceiver(genericMessageReciever, genericMessage);
+        
+        IntentFilter notRr = new IntentFilter();
+        notRr.addAction(Constants.ACTION_NOT_RR_DIALOG);
+        registerReceiver(notRrReciever, notRr);
     }
     public void finish() {
         super.finish();
@@ -96,6 +118,7 @@ public class DeltaDialogActivity extends Activity {
         unregisterReceiver(closeReciever);
         unregisterReceiver(applyReciever);
         unregisterReceiver(genericMessageReciever);
+        unregisterReceiver(notRrReciever);
         super.onDestroy();
     }
     @Override

@@ -7,6 +7,8 @@ import android.app.FragmentManager;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.content.Intent;
+import java.util.List;
 import android.support.v4.widget.DrawerLayout;
 
 public class MainActivity extends Activity
@@ -29,6 +31,23 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        List<String> rrVersion = Shell.SH.run("getprop ro.rr.version");
+        if(rrVersion == null || rrVersion.size() == 0) {
+            Intent notRrDialog = new Intent(Constants.ACTION_NOT_RR_DIALOG);
+            startActivity(new Intent(this, DeltaDialogActivity.class)
+               .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        /* Delay needed as the dialog activity needs time to register
+          * the broadcast receiver
+          */
+        try {
+            Thread.sleep(90);
+        }
+        catch(InterruptedException e) {
+            Log.e(TAG, e.toString());
+        }
+            sendBroadcast(notRrDialog);
+            onDestroy();
+        }
         mNavigationDrawerFragment = (NavigationDrawerFragment)
 			getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();

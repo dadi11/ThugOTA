@@ -9,7 +9,7 @@ public class Constants {
     final static String ACTION_APPLY_DIALOG = "delta.out386.thugota.APPLY_DIALOG";
     final static String GENERIC_DIALOG = "delta.out386.thugota.GENERIC_DIALOG";
     final static String PROGRESS_DIALOG = "delta.out386.thugota.PROGRESS_DIALOG";
-
+    final static String ACTION_NOT_RR_DIALOG = "delta.out386.thugota.NOT_RR_DIALOG";
     final static String PROGRESS = "delta.out386.thugota.PROGRESS";
     final static String SPEED = "delta.out386.thugota.SPEED";
     final static String DIALOG_MESSAGE = "delta.out386.thugota.DIALOG_MESSAGE";
