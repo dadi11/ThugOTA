@@ -28,11 +28,12 @@ public class Constants {
     final static String SUPPORTED_ROM_PROP = "ro.rr.version";
     final static String SUPPORTED_ROM_PROP_NAME = "ResurrectionRemix";
 
-    // The delimiter(s) used in the ROM zip to separate name, date, version, etc.
-    final static String ROM_ZIP_DELIMITER = "-_.";
+    // The delimiter(s) used in the ROM zip to separate name, date, version, etc. 
+    // Include "." in delimiter, adjust LOCATION constants appropiately
+    final static String ROM_ZIP_DELIMITER = "-.";
     final static int ROM_ZIP_NAME_LOCATION = 1;
-    final static int ROM_ZIP_DATE_LOCATION = 5;
-    final static int ROM_ZIP_DEVICE_LOCATION = 4;
+    final static int ROM_ZIP_DATE_LOCATION = 6;
+    final static int ROM_ZIP_DEVICE_LOCATION = 7;
     final static String ROM_ZIP_NAME = "ResurrectionRemix";
     final static String ROM_ZIP_DEVICE_NAME = "lettuce";
     /**
