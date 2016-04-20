@@ -10,6 +10,7 @@ import java.util.zip.ZipFile;
 
 public class SortFileType
 {
+	final String TAG = Constants.TAG;
 	File file;
 	public SortFileType(Context context) {
 
@@ -24,7 +25,7 @@ public class SortFileType
 			zipTypeList = new ZipFile(file.toString()).entries();
 		}
 		catch(IOException e) {
-			Log.e("borked", e.toString());
+			Log.e(TAG, e.toString());
 		}
 		
 		if(zipTypeList == null)

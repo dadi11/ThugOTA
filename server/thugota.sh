@@ -25,7 +25,7 @@ fi
 HOME=/home/out386/build
 BIN_ZIPADJUST=zipadjust
 XDELTA=xdelta3
-FILE_MATCH=XOSP*OFFICIAL*.zip
+FILE_MATCH=*.zip
 PATH_CURRENT=$HOME/in/target/product/$DEVICE
 PATH_LAST=$HOME/delta/last/$DEVICE
 

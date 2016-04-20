@@ -1,7 +1,7 @@
 package delta.out386.thugota;
 
 public class Constants {
-    final static String TAG = "borked";
+    final static String TAG = "ThugOTA";
 
     final static String ACTION_CLOSE_DIALOG = "delta.out386.thugota.CLOSE_DIALOG";
     final static String ACTION_APPLY_DIALOG = "delta.out386.thugota.APPLY_DIALOG";
