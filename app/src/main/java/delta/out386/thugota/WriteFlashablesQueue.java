@@ -12,14 +12,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
-
-/**
- * Created by J-PC on 3/30/2016.
- */
 public class WriteFlashablesQueue extends AsyncTask<Void, Void, Void> {
     Flashables flashables;
     Context context;
+    final String TAG = Constants.TAG;
+
     public WriteFlashablesQueue(Flashables flashables, Context context) {
         this.flashables = flashables;
         this.context = context;
@@ -34,28 +31,20 @@ public class WriteFlashablesQueue extends AsyncTask<Void, Void, Void> {
                 flashablesTypeList = (FlashablesTypeList) ois.readObject();
                 ois.close();
             }
-            catch(FileNotFoundException e) {
-                Log.e("borked", e.toString());
-            }
-            catch(IOException e) {
-                Log.e("borked", e.toString());
-            }
-            catch(ClassNotFoundException e) {
-                Log.e("borked", e.toString());
+            catch(Exception e) {
+                Log.e(TAG, e.toString());
             }
         }
         else
             flashablesTypeList = new FlashablesTypeList();
-        if(flashables != null)
+        if(flashables != null && flashablesTypeList != null)
             flashablesTypeList.addFlashable(flashables);
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
             oos.writeObject(flashablesTypeList);
             oos.close();
-        } catch (FileNotFoundException e) {
-            Log.e("borked", e.toString());
-        } catch (IOException e) {
-            Log.e("borked", e.toString());
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
         }
         return null;
     }

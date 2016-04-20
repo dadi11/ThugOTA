@@ -5,24 +5,13 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.faraji.environment3.Environment3;
-
-/**
- * Created by J-PC on 3/18/2016.
- */
 public class BaseFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
     private static final String ARG_SECTION_NUMBER = "section_number";
     final int WRITE_STORAGE_PERMISSION = 1;
     final int READ_STORAGE_PERMISSION = 1;
