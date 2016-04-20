@@ -8,10 +8,13 @@ public class Constants {
     final static String GENERIC_DIALOG = "delta.out386.thugota.GENERIC_DIALOG";
     final static String PROGRESS_DIALOG = "delta.out386.thugota.PROGRESS_DIALOG";
     final static String ACTION_NOT_ROM_DIALOG = "delta.out386.thugota.NOT_ROM_DIALOG";
+    final static String AUTO_UPDATE = "delta.out386.thugota.AUTO_UPDATE_DIALOG";
 
     final static String PROGRESS = "delta.out386.thugota.PROGRESS";
     final static String DIALOG_MESSAGE = "delta.out386.thugota.DIALOG_MESSAGE";
     final static String GENERIC_DIALOG_MESSAGE = "delta.out386.thugota.GENERIC_DIALOG_MESSAGE";
+    final static String AUTO_UPDATE_BASE = "delta.out386.thugota.AUTO_UPDATE_BASE";
+    final static String AUTO_UPDATE_DELTA = "delta.out386.thugota.AUTO_UPDATE_DELTA";
 
     /**
      * Information about the supported rom.

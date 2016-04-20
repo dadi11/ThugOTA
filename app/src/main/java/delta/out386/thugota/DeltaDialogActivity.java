@@ -49,13 +49,13 @@ public class DeltaDialogActivity extends Activity {
             String text = intent.getStringExtra(Constants.GENERIC_DIALOG_MESSAGE);
             loader.setVisibility(View.GONE);
             okButton.setVisibility(View.VISIBLE);
+            allowBack = true;
             okButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onBackPressed();
                 }
             });
-            allowBack = true;
             loadingText.setText(text);
         }
     };
@@ -79,16 +79,7 @@ public class DeltaDialogActivity extends Activity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.delta_apply_dialog);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-        loadingText = (TextView)findViewById(R.id.loadingText);
-        loadingText.setText("Working");
-        progressbar = (NumberProgressBar)findViewById(R.id.progressbar);
-
-
+    protected void onResume() {
         IntentFilter apply = new IntentFilter();
         apply.addAction(Constants.ACTION_APPLY_DIALOG);
         registerReceiver(applyReciever, apply);
@@ -104,10 +95,21 @@ public class DeltaDialogActivity extends Activity {
         IntentFilter genericMessage = new IntentFilter();
         genericMessage.addAction(Constants.GENERIC_DIALOG);
         registerReceiver(genericMessageReciever, genericMessage);
-        
+
         IntentFilter notRom = new IntentFilter();
         notRom.addAction(Constants.ACTION_NOT_ROM_DIALOG);
         registerReceiver(notRomReciever, notRom);
+        super.onResume();
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.delta_apply_dialog);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        loadingText = (TextView)findViewById(R.id.loadingText);
+        loadingText.setText("Working");
+        progressbar = (NumberProgressBar)findViewById(R.id.progressbar);
     }
     public void finish() {
 
