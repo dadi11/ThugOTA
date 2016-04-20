@@ -1,10 +1,10 @@
 package delta.out386.thugota;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
@@ -24,23 +24,13 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        List<String> rrVersion = Shell.SH.run("getprop ro.rr.version");
-        if(rrVersion == null || rrVersion.size() == 0) {
-            Intent notRrDialog = new Intent(Constants.ACTION_NOT_RR_DIALOG);
-            startActivity(new Intent(this, DeltaDialogActivity.class)
-               .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        /* Delay needed as the dialog activity needs time to register
-          * the broadcast receiver
-          */
-        try {
-            Thread.sleep(90);
-        }
-        catch(InterruptedException e) {
-            Log.e(TAG, e.toString());
-        }
-            sendBroadcast(notRrDialog);
-            onDestroy();
+        // Checking if the app has been made ROM specific or not
+        if(Constants.SUPPORTED_ROM_PROP != null) {
+            List<String> romVersion = Shell.SH.run("getprop " + Constants.SUPPORTED_ROM_PROP);
+            if (romVersion == null || romVersion.size() == 0 || !romVersion.get(0).contains(Constants.SUPPORTED_ROM_PROP_NAME)) {
+                // Unsupported ROM. Let's quit.
+                new NotSupportedRom().execute();
+            }
         }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -85,6 +75,24 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks
             fragmentManager.beginTransaction()
                     .replace(R.id.container, fragment)
                     .commit();
+        }
+    }
+    private class NotSupportedRom extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Intent notRomDialog = new Intent(Constants.ACTION_NOT_ROM_DIALOG);
+            startActivity(new Intent(getApplicationContext(), DeltaDialogActivity.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            try {
+                Thread.sleep(4000);
+                // Delay needed as the activity needs time to register the reciever
+            }
+            catch (InterruptedException e)
+            {}
+            sendBroadcast(notRomDialog);
+            finish();
+            return null;
         }
     }
 }

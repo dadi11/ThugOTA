@@ -60,18 +60,18 @@ public class DeltaDialogActivity extends Activity {
         }
     };
     
-    BroadcastReceiver notRrReciever = new BroadcastReceiver() {
+    BroadcastReceiver notRomReciever = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             AVLoadingIndicatorView loader = (AVLoadingIndicatorView)findViewById(R.id.aviLoader);
             RelativeLayout okButton = (RelativeLayout)findViewById(R.id.ok_button);
-            String text = "Sorry. This app only works on ResurrectionRemix";
+            String text = "Sorry. This app only works on " + Constants.SUPPORTED_ROM_FULL_NAME;
             loader.setVisibility(View.GONE);
             okButton.setVisibility(View.VISIBLE);
             okButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onDestroy();
+                    finish();
                 }
             });
             loadingText.setText(text);
@@ -105,20 +105,22 @@ public class DeltaDialogActivity extends Activity {
         genericMessage.addAction(Constants.GENERIC_DIALOG);
         registerReceiver(genericMessageReciever, genericMessage);
         
-        IntentFilter notRr = new IntentFilter();
-        notRr.addAction(Constants.ACTION_NOT_RR_DIALOG);
-        registerReceiver(notRrReciever, notRr);
+        IntentFilter notRom = new IntentFilter();
+        notRom.addAction(Constants.ACTION_NOT_ROM_DIALOG);
+        registerReceiver(notRomReciever, notRom);
     }
     public void finish() {
+
         super.finish();
     }
     @Override
-    public void onDestroy() {
+    public void onPause() {
         unregisterReceiver(closeReciever);
         unregisterReceiver(applyReciever);
+        unregisterReceiver(progressReciever);
         unregisterReceiver(genericMessageReciever);
-        unregisterReceiver(notRrReciever);
-        super.onDestroy();
+        unregisterReceiver(notRomReciever);
+        super.onPause();
     }
     @Override
     public void onBackPressed() {
