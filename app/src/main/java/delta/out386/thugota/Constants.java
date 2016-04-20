@@ -16,11 +16,23 @@ public class Constants {
     /**
      * Information about the supported rom.
      * To support all ROMs, set SUPPORTED_ROM_PROP to null.
+     * Supporting all ROMs will disable delta auto apply.
      * SUPPORTED_ROM_PROP is the is the property that the ROM uses to identify itself.
      * SUPPORTED_ROM_PROP_NAME is any unique part of the SUPPORTED_ROM_PROP property.
      */
 
     final static String SUPPORTED_ROM_FULL_NAME = "Resurrection Remix";
     final static String SUPPORTED_ROM_PROP = "ro.rr.version";
-    final static String SUPPORTED_ROM_PROP_NAME="ResurrectionRemix";
+    final static String SUPPORTED_ROM_PROP_NAME = "ResurrectionRemix";
+
+    // The delimiter(s) used in the ROM zip to separate name, date, version, etc.
+    final static String ROM_ZIP_DELIMITER = "-_.";
+    final static int ROM_ZIP_NAME_LOCATION = 1;
+    final static int ROM_ZIP_DATE_LOCATION = 5;
+    final static int ROM_ZIP_DEVICE_LOCATION = 4;
+    final static String ROM_ZIP_NAME = "ResurrectionRemix";
+    final static String ROM_ZIP_DEVICE_NAME = "lettuce";
+    /**
+     * EXAMPLE : ROMName-VersionMajor.VersionMinor-Device-Date.zip
+     */
 }

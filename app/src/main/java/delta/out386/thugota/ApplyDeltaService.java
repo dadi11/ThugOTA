@@ -10,13 +10,13 @@ import java.util.List;
 import eu.chainfire.libsuperuser.Shell;
 import eu.chainfire.opendelta.Native;
 
-public class ApplyDelta extends IntentService {
+public class ApplyDeltaService extends IntentService {
     DeltaData deltaJson;
     String source;
     final String TAG = Constants.TAG;
     String sourceMd5 = null, targetMd5, deltaMd5 = null, diff, targetPath;
-    public ApplyDelta(){
-        super("ApplyDelta");
+    public ApplyDeltaService(){
+        super("ApplyDeltaService");
     }
 
     @Override
