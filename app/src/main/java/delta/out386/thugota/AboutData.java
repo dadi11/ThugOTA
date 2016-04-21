@@ -1,4 +1,7 @@
 /*
+ * Copyright (C) 2016 Ritayan Chakraborty (out386)
+ */
+/*
  * This file is part of ThugDelta.
  *
  * ThugDelta is free software: you can redistribute it and/or modify
@@ -15,25 +18,18 @@
  * along with ThugDelta. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 package delta.out386.thugota;
 
+import java.io.File;
 import java.io.Serializable;
 
-public class DeltaData implements Serializable{
-    long targetSize = 0;
-    float version = 2.1f;
-    String sourceMd5 = null;
-    String sourceDecMd5 = null;
-    String targetMd5 = null;
-    String deltaMd5 = null;
-    String source;
-    String target;
-    String delta;
-
-    public DeltaData(String source, String target, String delta)
-    {
-        this.source = source;
-        this.target = target;
-        this.delta = delta;
+public class AboutData {
+    String name, link;
+    int license;
+    public AboutData(String name,  int license, String link) {
+        this.name = name;
+        this.license = license;
+        this.link = link;
     }
 }
