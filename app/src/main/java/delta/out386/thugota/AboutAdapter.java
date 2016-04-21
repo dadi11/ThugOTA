@@ -1,3 +1,24 @@
+/*
+ * Copyright (C) 2016 Ritayan Chakraborty (out386)
+ */
+/*
+ * This file is part of ThugDelta.
+ *
+ * ThugDelta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ThugDelta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ThugDelta. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
 package delta.out386.thugota;
 
 import android.content.Context;
@@ -24,7 +45,18 @@ public class AboutAdapter extends ArrayAdapter<AboutData> {
         if(p != null) {
             TextView name = (TextView) v.findViewById(R.id.libraryNameText);
             TextView link = (TextView) v.findViewById(R.id.libraryLinkText);
-            name.setText(p.name);
+            String license = null;
+            if(p.license == 0)
+                license = "Apache version 2.0";
+            else if(p.license == 1)
+                license = "GNU General Public License 3";
+            else if(p.license == 2)
+                license = "MIT License (MIT)";
+            else if(p.license == 3)
+                license  = "GNU General Public Licence 2";
+            if(license == null)
+                return v;
+            name.setText(p.name + ", licensed under the " + license);
             link.setText(p.link);
         }
         return v;

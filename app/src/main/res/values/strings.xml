@@ -8,7 +8,10 @@
     <string name="title_section5">Others</string>
     <string name="title_section6">Queue</string>
     <string name="title_section7">About</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="author">Written by Ritayan Chakraborty (out386)
+Testers : Shreesha Murthy, Abhishek Aggarwal, Zeeshan
+Thanks to Shreesha Murthy and Călin Neamțu for motivation
+Libraries used:</string>
 </resources>
