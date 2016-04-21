@@ -21,38 +21,32 @@
 package delta.out386.thugota;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-public class QueueFragment extends Fragment {
-    private static final String ARG_SECTION_NUMBER = "section_number";
-    static int section = 1;
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static QueueFragment newInstance(int sectionNumber) {
-        section = sectionNumber;
-        QueueFragment fragment = new QueueFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    public QueueFragment() {
+public class AboutFragment extends Fragment {
+    View rootView;
+    public static AboutFragment newInstance() {
+        return new AboutFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_queue, container, false);
-        final Context cont=getActivity();
+        rootView = inflater.inflate(R.layout.fragment_about, container, false);
+        ListView lv=(ListView) rootView.findViewById(R.id.aboutListView);
+        List<AboutData> aboutList = new ArrayList<>();
+        aboutList.add(new AboutData("Apache Commons IO", "Apache License V 2.0", "http://commons.apache.org/io"));
+        AboutAdapter adapter = new AboutAdapter(getContext(),
+                R.layout.about_list_item, aboutList);
+        lv.setAdapter(adapter);
 
-        new ReadFlashablesQueue(cont, rootView).execute();
         return rootView;
     }
 }
