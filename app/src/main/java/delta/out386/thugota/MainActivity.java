@@ -26,6 +26,7 @@ import android.app.FragmentManager;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.content.Intent;
 import java.util.List;
@@ -36,7 +37,6 @@ import android.util.Log;
 public class MainActivity extends Activity
 implements NavigationDrawerFragment.NavigationDrawerCallbacks
 {
-	final String TAG = Constants.TAG;
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     @Override
@@ -106,15 +106,15 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks
         @Override
         protected Void doInBackground(Void... voids) {
             Intent notRomDialog = new Intent(Constants.ACTION_NOT_ROM_DIALOG);
-            startActivity(new Intent(getApplicationContext(), DeltaDialogActivity.class)
+            startActivity(new Intent(getApplication(), DeltaDialogActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             try {
                 Thread.sleep(4000);
-                // Delay needed as the activity needs time to register the reciever
+                // Delay needed as the activity needs time to register the receiver
             }
             catch (InterruptedException e)
             {}
-            sendBroadcast(notRomDialog);
+            LocalBroadcastManager.getInstance(getApplication()).sendBroadcast(notRomDialog);
             finish();
             return null;
         }
