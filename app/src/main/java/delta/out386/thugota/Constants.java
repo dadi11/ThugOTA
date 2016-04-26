@@ -26,7 +26,6 @@ public class Constants {
     final static String ACTION_APPLY_DIALOG = "delta.out386.thugota.APPLY_DIALOG";
     final static String ACTION_APPLY_DIALOG_FIRST_START = "delta.out386.thugota.APPLY_DIALOG_FIRST_START";
     final static String GENERIC_DIALOG = "delta.out386.thugota.GENERIC_DIALOG";
-    final static String GENERIC_DIALOG_FIRST_START = "delta.out386.thugota.GENERIC_DIALOG_FIRST_START";
     final static String PROGRESS_DIALOG = "delta.out386.thugota.PROGRESS_DIALOG";
     final static String ACTION_NOT_ROM_DIALOG = "delta.out386.thugota.NOT_ROM_DIALOG";
     final static String AUTO_UPDATE = "delta.out386.thugota.AUTO_UPDATE";
