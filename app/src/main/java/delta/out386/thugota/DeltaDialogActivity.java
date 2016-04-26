@@ -52,6 +52,7 @@ public class DeltaDialogActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String text = intent.getStringExtra(Constants.DIALOG_MESSAGE);
+            progressbar.setVisibility(View.GONE);
             loadingText.setText(text);
         }
     };
@@ -70,11 +71,14 @@ public class DeltaDialogActivity extends Activity {
             RelativeLayout okButton = (RelativeLayout)findViewById(R.id.ok_button);
             String text = intent.getStringExtra(Constants.GENERIC_DIALOG_MESSAGE);
             loader.setVisibility(View.GONE);
+            progressbar.setVisibility(View.GONE);
             okButton.setVisibility(View.VISIBLE);
             allowBack = true;
+            final Intent intent2 = intent;
             okButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    removeStickyBroadcast(intent2);
                     onBackPressed();
                 }
             });
@@ -99,7 +103,7 @@ public class DeltaDialogActivity extends Activity {
 
         IntentFilter genericMessage = new IntentFilter();
         genericMessage.addAction(Constants.GENERIC_DIALOG);
-        LocalBroadcastManager.getInstance(getApplication()).registerReceiver(genericMessageReciever, genericMessage);
+        registerReceiver(genericMessageReciever, genericMessage);
 
         super.onResume();
     }
@@ -123,7 +127,7 @@ public class DeltaDialogActivity extends Activity {
         LocalBroadcastManager.getInstance(getApplication()).unregisterReceiver(closeReciever);
         LocalBroadcastManager.getInstance(getApplication()).unregisterReceiver(applyReciever);
         LocalBroadcastManager.getInstance(getApplication()).unregisterReceiver(progressReciever);
-        LocalBroadcastManager.getInstance(getApplication()).unregisterReceiver(genericMessageReciever);
+        unregisterReceiver(genericMessageReciever);
         super.onPause();
     }
     @Override
