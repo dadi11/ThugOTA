@@ -16,6 +16,8 @@
  */
 
 package delta.out386.thugota;
+import eu.chainfire.libsuperuser.Shell;
+
 
 public class Constants {
     final static String TAG = "ThugOTA";
@@ -55,7 +57,7 @@ public class Constants {
     final static int ROM_ZIP_DATE_LOCATION = 6;
     final static int ROM_ZIP_DEVICE_LOCATION = 7;
     final static String ROM_ZIP_NAME = "ResurrectionRemix";
-    final static String ROM_ZIP_DEVICE_NAME = "lettuce";
+    final static String ROM_ZIP_DEVICE_NAME = Shell.SH.run("getprop ro.rr.device").get(0);
     /**
      * EXAMPLE : ROMName-VersionMajor.VersionMinor-Device-Date.zip
      */
