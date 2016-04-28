@@ -22,10 +22,9 @@ package delta.out386.thugota;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Environment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.view.View;
 
 import com.cjj.MaterialRefreshLayout;
 
@@ -44,18 +43,21 @@ public class FindZips {
     final String TAG = Constants.TAG;
     File f = null;
     MaterialRefreshLayout refresh;
+    SharedPreferences preferences;
 
-    public FindZips(Context context, boolean isReload, MaterialRefreshLayout refresh){
+    public FindZips(Context context, boolean isReload, MaterialRefreshLayout refresh, SharedPreferences preferences){
         this.isReload = isReload;
         this.refresh = refresh;
         this.context = context;
+        this.preferences = preferences;
     }
 
     public FlashablesTypeList run() {
         FlashablesTypeList output = null;
         File directory = null;
         boolean directoryExists = true;
-
+        String location = preferences.getString("location", Environment.getExternalStorageDirectory().getAbsolutePath());
+        File storage = new File(location);
         f = new File(context.getFilesDir().toString() + "/FlashablesTypeList");
         if (!isReload && !f.exists()) {
             isLoading = true;
@@ -67,8 +69,12 @@ public class FindZips {
         }
 
         try {
-                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-                    directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/thugota");
+            if(!storage.exists()) {
+                Log.e(TAG, "Storage location does not exist");
+                return null;
+            }
+                if (Environment.getExternalStorageState(storage).equals(Environment.MEDIA_MOUNTED))
+                    directory = new File(storage.getAbsolutePath() + "/thugota");
             }
             catch (Exception e) {
             Log.e(TAG, e.toString());

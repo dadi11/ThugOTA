@@ -21,6 +21,7 @@
 package delta.out386.thugota;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -39,7 +40,7 @@ public class AutoApplySetupService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        FlashablesTypeList flashablesList = new FindZips(getApplication(), true, null).run();
+        FlashablesTypeList flashablesList = new FindZips(getApplication(), true, null, getSharedPreferences("settings", Context.MODE_PRIVATE)).run();
         String romName = null, deviceName = null;
         int date = 0, maxDate = 0, location = 1;
         File newestRom = null;
